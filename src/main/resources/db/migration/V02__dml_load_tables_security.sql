@@ -90,6 +90,8 @@ INSERT INTO profile (id, name, description, active)
 VALUES ('COORDINATOR', 'COORDINATOR', null, true);
 INSERT INTO profile (id, name, description, active)
 VALUES ('OPERATOR', 'OPERATOR', null, true);
+INSERT INTO profile (id, name, description, active)
+VALUES ('SYSTEM_READ', 'SYSTEM_READ', null, true);
 
 --categories admin roles
 INSERT INTO roles_profile (id_profile, id_role)
@@ -97,9 +99,13 @@ VALUES ('ADMINISTRATOR', 'REGISTER_CATEGORIES');
 INSERT INTO roles_profile (id_profile, id_role)
 VALUES ('ADMINISTRATOR', 'SEARCH_CATEGORIES');
 INSERT INTO roles_profile (id_profile, id_role)
+VALUES ('SYSTEM_READ', 'SEARCH_CATEGORIES');
+INSERT INTO roles_profile (id_profile, id_role)
 VALUES ('ADMINISTRATOR', 'EDIT_CATEGORIES');
 INSERT INTO roles_profile (id_profile, id_role)
 VALUES ('ADMINISTRATOR', 'LIST_CATEGORIES');
+INSERT INTO roles_profile (id_profile, id_role)
+VALUES ('SYSTEM_READ', 'LIST_CATEGORIES');
 INSERT INTO roles_profile (id_profile, id_role)
 VALUES ('ADMINISTRATOR', 'DELETE_CATEGORIES');
 
@@ -109,9 +115,13 @@ VALUES ('ADMINISTRATOR', 'REGISTER_PRODUCTS');
 INSERT INTO roles_profile (id_profile, id_role)
 VALUES ('ADMINISTRATOR', 'SEARCH_PRODUCTS');
 INSERT INTO roles_profile (id_profile, id_role)
+VALUES ('SYSTEM_READ', 'SEARCH_PRODUCTS');
+INSERT INTO roles_profile (id_profile, id_role)
 VALUES ('ADMINISTRATOR', 'EDIT_PRODUCTS');
 INSERT INTO roles_profile (id_profile, id_role)
 VALUES ('ADMINISTRATOR', 'LIST_PRODUCTS');
+INSERT INTO roles_profile (id_profile, id_role)
+VALUES ('SYSTEM_READ', 'LIST_PRODUCTS');
 INSERT INTO roles_profile (id_profile, id_role)
 VALUES ('ADMINISTRATOR', 'DELETE_PRODUCTS');
 
@@ -121,9 +131,13 @@ VALUES ('ADMINISTRATOR', 'REGISTER_CUSTOMERS');
 INSERT INTO roles_profile (id_profile, id_role)
 VALUES ('ADMINISTRATOR', 'SEARCH_CUSTOMERS');
 INSERT INTO roles_profile (id_profile, id_role)
+VALUES ('SYSTEM_READ', 'SEARCH_CUSTOMERS');
+INSERT INTO roles_profile (id_profile, id_role)
 VALUES ('ADMINISTRATOR', 'EDIT_CUSTOMERS');
 INSERT INTO roles_profile (id_profile, id_role)
 VALUES ('ADMINISTRATOR', 'LIST_CUSTOMERS');
+INSERT INTO roles_profile (id_profile, id_role)
+VALUES ('SYSTEM_READ', 'LIST_CUSTOMERS');
 INSERT INTO roles_profile (id_profile, id_role)
 VALUES ('ADMINISTRATOR', 'DELETE_CUSTOMERS');
 
@@ -133,11 +147,15 @@ VALUES ('ADMINISTRATOR', 'REGISTER_ORDERS');
 INSERT INTO roles_profile (id_profile, id_role)
 VALUES ('ADMINISTRATOR', 'SEARCH_ORDERS');
 INSERT INTO roles_profile (id_profile, id_role)
+VALUES ('SYSTEM_READ', 'SEARCH_ORDERS');
+INSERT INTO roles_profile (id_profile, id_role)
 VALUES ('ADMINISTRATOR', 'EDIT_ORDERS');
 INSERT INTO roles_profile (id_profile, id_role)
 VALUES ('ADMINISTRATOR', 'UPDATE_STATUS_ORDERS');
 INSERT INTO roles_profile (id_profile, id_role)
 VALUES ('ADMINISTRATOR', 'LIST_ORDERS');
+INSERT INTO roles_profile (id_profile, id_role)
+VALUES ('SYSTEM_READ', 'LIST_ORDERS');
 INSERT INTO roles_profile (id_profile, id_role)
 VALUES ('ADMINISTRATOR', 'DELETE_ORDERS');
 
@@ -151,15 +169,33 @@ VALUES ('ADMINISTRATOR', 'REGISTER_USERS');
 INSERT INTO roles_profile (id_profile, id_role)
 VALUES ('ADMINISTRATOR', 'SEARCH_USERS');
 INSERT INTO roles_profile (id_profile, id_role)
+VALUES ('SYSTEM_READ', 'SEARCH_USERS');
+INSERT INTO roles_profile (id_profile, id_role)
 VALUES ('ADMINISTRATOR', 'EDIT_USERS');
 INSERT INTO roles_profile (id_profile, id_role)
 VALUES ('ADMINISTRATOR', 'DELETE_USERS');
 INSERT INTO roles_profile (id_profile, id_role)
 VALUES ('ADMINISTRATOR', 'LIST_USERS');
+INSERT INTO roles_profile (id_profile, id_role)
+VALUES ('SYSTEM_READ', 'LIST_USERS');
 
 INSERT INTO user_system(uuid, login, name, email, password, document_type, document_number, status)
 VALUES ('34848e20-9679-11eb-9e13-0242ac110002', 'myller', 'Myller Sakaguchi', 'myllersakaguchi@gmail.com',
         '$2a$12$LwvLU2yfeDH63i/V7g5aCO.fLzVw0F9l06DEK3kYmh4c6exfWKm2G', 'DOCUMENT', '86079939096', 'ACTIVE');
 
+INSERT INTO user_system(uuid, login, name, password, status)
+VALUES ('17ddc987-4418-4ebf-a7e4-0cfd7b3ab65d', 'tc-auth-user-app', 'Tech Challenge Auth User',
+        '$2a$12$LwvLU2yfeDH63i/V7g5aCO.fLzVw0F9l06DEK3kYmh4c6exfWKm2G', 'ACTIVE');
+
+INSERT INTO user_system(uuid, login, name, password, status)
+VALUES ('fe44c7b5-63a5-47b4-81ba-fd00d0eb233c', 'tc-order-user-app', 'Tech Challenge Order App User',
+        '$2a$12$LwvLU2yfeDH63i/V7g5aCO.fLzVw0F9l06DEK3kYmh4c6exfWKm2G', 'ACTIVE');
+
 INSERT INTO user_profile (id_user, id_profile)
 VALUES (1, 'ADMINISTRATOR');
+
+INSERT INTO user_profile (id_user, id_profile)
+VALUES (2, 'SYSTEM_READ');
+
+INSERT INTO user_profile (id_user, id_profile)
+VALUES (3, 'SYSTEM_READ');

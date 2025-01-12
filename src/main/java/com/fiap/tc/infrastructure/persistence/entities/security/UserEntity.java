@@ -30,14 +30,14 @@ public class UserEntity {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "email", nullable = false)
+    @Column(name = "email")
     private String email;
 
     @Column(name = "password", nullable = false)
     private String password;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "document_type", nullable = false, length = 100)
+    @Column(name = "document_type", length = 100)
     private DocumentType documentType;
 
     @Column(name = "document_number")
