@@ -4,11 +4,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.fiap.tc</groupId>
-    <artifactId>tc-backend-api</artifactId>
+    <artifactId>tc-auth-backend-api</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>tc-backend-api</name>
-    <description>TC Backend API</description>
+    <name>tc-auth-backend-api</name>
+    <description>TC Auth Backend API</description>
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -22,6 +22,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <spring-security-oauth2.version>2.2.4.RELEASE</spring-security-oauth2.version>
         <spring-security-jwt.version>1.0.9.RELEASE</spring-security-jwt.version>
+        <spring-reactor.version>1.0.1.RELEASE</spring-reactor.version>
         <org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
         <jacoco.version>0.8.12</jacoco.version>
         <fixture-factory.version>3.1.0</fixture-factory.version>
@@ -67,6 +68,21 @@
             <groupId>io.springfox</groupId>
             <artifactId>springfox-boot-starter</artifactId>
             <version>${springfox-swagger2.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.projectreactor</groupId>
+            <artifactId>reactor-spring</artifactId>
+            <version>${spring-reactor.version}</version>
         </dependency>
 
         <dependency>
@@ -181,23 +197,6 @@
             <artifactId>slf4j-api</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>com.google.zxing</groupId>
-            <artifactId>core</artifactId>
-            <version>${google.zxing.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.google.zxing</groupId>
-            <artifactId>javase</artifactId>
-            <version>${google.zxing.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.sqids</groupId>
-            <artifactId>sqids</artifactId>
-            <version>${sqids.version}</version>
-        </dependency>
 
     </dependencies>
 

@@ -1,7 +1,7 @@
 package com.fiap.tc.infrastructure.gateways.mappers;
 
 import com.fiap.tc.infrastructure.gateways.mappers.base.MapperEntity;
-import com.fiap.tc.infrastructure.persistence.entities.security.UserEntity;
+import com.fiap.tc.infrastructure.persistence.entities.UserEntity;
 import com.fiap.tc.domain.entities.UserSystem;
 import org.mapstruct.Mapper;
 

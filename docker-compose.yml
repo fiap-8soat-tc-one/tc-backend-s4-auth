@@ -19,14 +19,29 @@ services:
       timeout: 5s
       retries: 5
 
-  tc-backend:
+  redis:
+    image: redis:7.4.2-alpine
+    healthcheck:
+      test: [ "CMD-SHELL", "redis-cli ping | grep PONG" ]
+      interval: 1s
+      timeout: 3s
+      retries: 5
+    command: [ "redis-server" ]
+    restart: always
+    ports:
+      - 6379:6379
+    volumes:
+      - cache_data:/data
+
+  tc-auth-backend:
     depends_on:
       postgres:
         condition: service_healthy
-    #    image: jcmds/fiap-8soat-tc
+      redis:
+        condition: service_healthy
     build:
       context: .
-    container_name: tc-backend
+    container_name: tc-auth-backend
     ports:
       - 8080:8080
     restart: always
@@ -44,4 +59,6 @@ services:
       start_period: 10s
 volumes:
   pgdata:
+    external: false
+  cache_data:
     external: false

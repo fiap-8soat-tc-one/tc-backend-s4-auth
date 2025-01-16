@@ -19,14 +19,12 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import java.util.Collections;
 import java.util.List;
 
-import static springfox.documentation.builders.PathSelectors.regex;
-
 @Configuration
 @EnableSwagger2
 @Profile({"local", "dev", "hmg"})
 public class SwaggerConfig {
 
-    private static final String TITLE = "Tech Challenge Backend APIs";
+    private static final String TITLE = "Tech Challenge Auth Backend APIs";
     private static final String VERSION = "1.0";
 
     @Bean
@@ -43,32 +41,6 @@ public class SwaggerConfig {
                 .securityContexts(Collections.singletonList(securityContext()));
     }
 
-
-    @Bean
-    public Docket privateDocumentation(Environment env) {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .groupName("Private")
-                .select()
-                .apis(RequestHandlerSelectors.any())
-                .paths(regex("(/api/private/v1.*)"))
-                .build()
-                .apiInfo(apiInfo())
-                .securitySchemes(List.of(getBearer()))
-                .securityContexts(Collections.singletonList(securityContext()));
-    }
-
-    @Bean
-    public Docket publicDocumentation(Environment env) {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .groupName("Public")
-                .select()
-                .apis(RequestHandlerSelectors.any())
-                .paths(regex("/api/public/v1.*"))
-                .build()
-                .apiInfo(apiInfo())
-                .securitySchemes(List.of(getBearer()))
-                .securityContexts(Collections.singletonList(securityContext()));
-    }
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder().title(TITLE).version(VERSION).build();

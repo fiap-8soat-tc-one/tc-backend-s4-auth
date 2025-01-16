@@ -17,7 +17,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
 @RequestMapping(path = URLMapping.ROOT_PRIVATE_API_AUTH)
-@Api(tags = "token-endpoint", produces = APPLICATION_JSON_VALUE)
+@Api(tags = "Backoffice OAuth API V1", produces = APPLICATION_JSON_VALUE)
 public class BackofficeController {
 
     @Autowired

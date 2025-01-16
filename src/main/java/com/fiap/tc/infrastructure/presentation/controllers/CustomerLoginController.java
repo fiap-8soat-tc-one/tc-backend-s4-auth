@@ -8,7 +8,6 @@ import com.fiap.tc.infrastructure.presentation.requests.CustomerLoginRequest;
 import com.fiap.tc.infrastructure.presentation.requests.ValidateCustomerRequest;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiParam;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,20 +22,20 @@ import static org.springframework.http.ResponseEntity.ok;
 
 @RestController
 @RequestMapping(path = URLMapping.ROOT_PUBLIC_API_AUTH)
-@Api(tags = "token-endpoint", produces = APPLICATION_JSON_VALUE)
+@Api(tags = "Customer OAuth API V1", produces = APPLICATION_JSON_VALUE)
 public class CustomerLoginController {
 
-    @Autowired
-    private CustomerTokenUtil jwtUtil;
+    private final CustomerTokenUtil jwtUtil;
 
     private final LoadCustomerUseCase loadCustomerUseCase;
 
-    public CustomerLoginController(LoadCustomerUseCase loadCustomerUseCase) {
+    public CustomerLoginController(LoadCustomerUseCase loadCustomerUseCase, CustomerTokenUtil jwtUtil) {
         this.loadCustomerUseCase = loadCustomerUseCase;
+        this.jwtUtil = jwtUtil;
     }
 
     @PostMapping(produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
-    public ResponseEntity<Map<String, String>> Login(@ApiParam(value = "Document number for login", required = true) @RequestBody CustomerLoginRequest request) {
+    public ResponseEntity<Map<String, String>> login(@ApiParam(value = "Document number for login", required = true) @RequestBody CustomerLoginRequest request) {
 
         Map<String, String> response = new HashMap<>();
         String document = request.getDocument();
@@ -56,7 +55,7 @@ public class CustomerLoginController {
 
 
     @PostMapping(path = "/validate", produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
-    public ResponseEntity<Map<String, String>> ValidateToken(@ApiParam(value = "JWT Token", required = true) @RequestBody ValidateCustomerRequest request) {
+    public ResponseEntity<Void> validateToken(@ApiParam(value = "JWT Token", required = true) @RequestBody ValidateCustomerRequest request) {
         String token = request.getAccessToken();
         jwtUtil.validateToken(token);
         return ok(null);

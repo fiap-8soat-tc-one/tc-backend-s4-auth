@@ -1,6 +1,6 @@
 package com.fiap.tc.infrastructure.persistence.repositories;
 
-import com.fiap.tc.infrastructure.persistence.entities.security.UserEntity;
+import com.fiap.tc.infrastructure.persistence.entities.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
