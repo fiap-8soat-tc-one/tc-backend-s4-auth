@@ -1,4 +1,4 @@
-package com.fiap.tc.infrastructure.persistence.entities.security;
+package com.fiap.tc.infrastructure.persistence.entities;
 
 import com.fiap.tc.domain.enums.DocumentType;
 import com.fiap.tc.domain.enums.UserStatus;

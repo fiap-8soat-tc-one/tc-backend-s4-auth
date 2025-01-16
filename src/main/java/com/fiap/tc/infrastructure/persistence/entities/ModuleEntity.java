@@ -1,4 +1,4 @@
-package com.fiap.tc.infrastructure.persistence.entities.security;
+package com.fiap.tc.infrastructure.persistence.entities;
 
 import lombok.Data;
 

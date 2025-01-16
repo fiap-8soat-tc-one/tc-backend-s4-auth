@@ -115,19 +115,3 @@ alter table security.user_profile
     add constraint FKcspgan7a5397ba6me049ukbhj
         foreign key (id_user)
             references security.user_system;
-
-create table customer
-(
-    id            serial not null,
-    active        boolean default true,
-    register_date timestamp,
-    updated_date  timestamp,
-    document      varchar(20),
-    email         varchar(255),
-    name          varchar(255),
-    uuid          uuid,
-    primary key (id)
-);
-
-alter table customer
-    add constraint UK_phlle50dp6ivt0paa1d5gkvk2 unique (document);

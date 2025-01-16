@@ -1,13 +1,14 @@
-package com.fiap.tc.infrastructure.persistence.entities.security;
+package com.fiap.tc.infrastructure.persistence.entities;
 
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Table(name = "role", schema = "security")
+@Table(name = "feature", schema = "security")
 @Data
-public class RoleEntity {
+public class FeatureEntity {
 
     @Id
     private String id;
@@ -22,7 +23,10 @@ public class RoleEntity {
     private boolean active;
 
     @ManyToOne
-    @JoinColumn(name = "id_feature")
-    private FeatureEntity feature;
+    @JoinColumn(name = "id_system_module")
+    private ModuleEntity module;
+
+    @OneToMany(mappedBy = "feature")
+    private List<RoleEntity> roles;
 
 }
