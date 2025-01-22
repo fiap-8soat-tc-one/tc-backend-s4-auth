@@ -9,7 +9,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
 @EnableConfigurationProperties(OriginApiProperty.class)
-@EnableScheduling
 public class TcAuthBackendApiApplication {
 
     public static void main(String[] args) {
