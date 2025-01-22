@@ -2,6 +2,7 @@ package com.fiap.tc.infrastructure.services;
 
 import com.fiap.tc.domain.entities.Customer;
 import com.fiap.tc.infrastructure.core.config.RestClientBackofficeConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,7 @@ public class CustomerServiceClient {
         this.authTokenManager = authTokenManager;
     }
 
+    @Cacheable(value = "customer", key = "#document")
     public Optional<Customer> load(String document) {
         return Optional.ofNullable(this.webClientBackoffice.method(HttpMethod.GET).uri(format(RESOURCE, document))
                 .headers(header -> {
