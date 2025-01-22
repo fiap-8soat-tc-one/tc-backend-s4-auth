@@ -50,6 +50,7 @@ spring:
     open-in-view: false
 
 app:
+  cache.ttl: 85000
   cache.user.token: true
   mvc.async.request-timeout: 10000
   thread.async:
