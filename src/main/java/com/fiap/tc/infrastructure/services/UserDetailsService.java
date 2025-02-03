@@ -1,12 +1,12 @@
-package com.fiap.tc.infrastructure.core.security.models;
+package com.fiap.tc.infrastructure.services;
 
+import com.fiap.tc.infrastructure.core.security.models.SystemUser;
 import com.fiap.tc.infrastructure.persistence.repositories.UserRepository;
 import com.fiap.tc.infrastructure.persistence.entities.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +16,7 @@ import java.util.Optional;
 import java.util.Set;
 
 @Service
-public class AppUserDetailsService implements UserDetailsService {
+public class UserDetailsService implements org.springframework.security.core.userdetails.UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;

@@ -18,12 +18,9 @@ public class LoginTemplates implements TemplateLoader {
                 add("id", random(Long.class, range(1, 100)));
                 add("uuid", UUID.randomUUID());
                 add("login", random("myller@teste.com"));
-                add("nome", random("Myller"));
+                add("name", random("Myller"));
                 add("email", random("myller@teste.com"));
-                add("senha", RandomStringUtils.randomAlphabetic(32));
-                add("senhaAes", RandomStringUtils.randomAlphabetic(32));
-
-
+                add("password", RandomStringUtils.randomAlphabetic(32));
             }
         });
 
