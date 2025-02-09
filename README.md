@@ -35,3 +35,6 @@ A cada atualização do status de pagamento, este microsserviço irá monitorar 
 ## Documentação do Kubernetes
 
 [Clique Aqui para ser redirecionado](https://github.com/fiap-8soat-tc-one/tc-backend-s3-k8s-iac/blob/main/README.md)
+
+
+## Documentação do Banco de dados do Microserviço Auth
