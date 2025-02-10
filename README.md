@@ -38,3 +38,5 @@ A cada atualização do status de pagamento, este microsserviço irá monitorar 
 
 
 ## Documentação do Banco de dados do Microserviço Auth
+
+[Clique Aqui para ser redirecionado](https://github.com/fiap-8soat-tc-one/tc-backend-s4-auth/blob/796d8cdf9de165befa4e44899aa37fa20593d674/docs/README.md)
