@@ -1,8 +1,6 @@
 package com.fiap.tc.infrastructure.presentation.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fiap.tc.infrastructure.presentation.requests.CustomerLoginRequest;
-import com.fiap.tc.infrastructure.presentation.requests.ValidateCustomerRequest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -15,6 +13,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.util.Map;
 
 import static com.fiap.tc.util.TestUtils.readResourceFileAsString;
+import static java.lang.String.format;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -38,10 +37,9 @@ public class CustomerLoginControllerIT {
     public void validateLogin() throws Exception {
         var loginResponse = customerLogin();
         var accessToken = loginResponse.get("access_token");
-        var validateCustomerRequest = readResourceFileAsString(ValidateCustomerRequest.class,
-                "validate_customer_login.json");
+        var validateCustomerRequest = readResourceFileAsString("requests/validate_customer_login.json");
 
-        var request = String.format(validateCustomerRequest, accessToken);
+        var request = format(validateCustomerRequest, accessToken);
         mockMvc.perform(post("/api/public/v1/oauth/token/validate")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(request)
@@ -54,8 +52,7 @@ public class CustomerLoginControllerIT {
     public void validateLogin_ShouldReturnForbidden_WhenInvalidToken() throws Exception {
         mockMvc.perform(post("/api/public/v1/oauth/token/validate")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(readResourceFileAsString(ValidateCustomerRequest.class,
-                                "validate_customer_login_invalid_token.json"))
+                        .content(readResourceFileAsString("requests/validate_customer_login_invalid_token.json"))
                 )
                 .andExpect(status().isForbidden())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
@@ -66,7 +63,7 @@ public class CustomerLoginControllerIT {
     private Map<String, String> customerLogin() throws Exception {
         String responseJson = mockMvc.perform(post("/api/public/v1/oauth/token")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(readResourceFileAsString(CustomerLoginRequest.class, "customer_login_request.json"))
+                        .content(readResourceFileAsString("requests/customer_login_request.json"))
                 )
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
