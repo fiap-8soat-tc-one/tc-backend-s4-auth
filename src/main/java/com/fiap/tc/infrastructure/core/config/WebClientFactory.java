@@ -105,12 +105,11 @@ public class WebClientFactory {
     }
 
     private static void logMethodAndUrl(ClientRequest request) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(request.method().name());
-        sb.append(" to ");
-        sb.append(request.url());
+        String sb = request.method().name() +
+                " to " +
+                request.url();
 
-        log.info(sb.toString());
+        log.info(sb);
     }
 
 }
