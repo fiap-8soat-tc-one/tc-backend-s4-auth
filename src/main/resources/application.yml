@@ -5,9 +5,16 @@ server:
   session:
     persistent: false # performance
     store-dir: /var/log/app # performance
+  error:
+    include-message: always
+    whitelabel:
+      enabled: false
+    include-exception: true
+    include-stacktrace: always
 
 # Pool Connection and Postgres settings
 spring:
+
   jackson:
     deserialization:
       fail-on-unknown-properties: false

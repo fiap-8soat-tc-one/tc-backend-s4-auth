@@ -8,6 +8,8 @@ import com.fiap.tc.infrastructure.presentation.requests.CustomerLoginRequest;
 import com.fiap.tc.infrastructure.presentation.requests.ValidateCustomerRequest;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiParam;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,6 +25,7 @@ import static org.springframework.http.ResponseEntity.ok;
 @RestController
 @RequestMapping(path = URLMapping.ROOT_PUBLIC_API_AUTH)
 @Api(tags = "Customer OAuth API V1", produces = APPLICATION_JSON_VALUE)
+@Slf4j
 public class CustomerLoginController {
 
     private final CustomerTokenUtil jwtUtil;
@@ -34,11 +37,13 @@ public class CustomerLoginController {
         this.jwtUtil = jwtUtil;
     }
 
+
     @PostMapping(produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
     public ResponseEntity<Map<String, String>> login(@ApiParam(value = "Document number for login", required = true) @RequestBody CustomerLoginRequest request) {
 
-        Map<String, String> response = new HashMap<>();
-        String document = request.getDocument();
+      try {
+          Map<String, String> response = new HashMap<>();
+          String document = request.getDocument();
 
         if (document == null || document.isEmpty()) { // anonymous flow
             response.put("access_token", "");
@@ -51,13 +56,23 @@ public class CustomerLoginController {
         response.put("access_token", token);
         response.put("profile", "customer");
         return ok(response);
+      } catch (Exception e) {
+          log.error(e.getMessage(), e);
+          return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+      }
     }
 
 
     @PostMapping(path = "/validate", produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> validateToken(@ApiParam(value = "JWT Token", required = true) @RequestBody ValidateCustomerRequest request) {
-        String token = request.getAccessToken();
-        jwtUtil.validateToken(token);
-        return ok(null);
+       try{
+           String token = request.getAccessToken();
+           jwtUtil.validateToken(token);
+           return ok(null);
+       }
+       catch(Exception e){
+           log.error(e.getMessage(), e);
+           return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+       }
     }
 }
