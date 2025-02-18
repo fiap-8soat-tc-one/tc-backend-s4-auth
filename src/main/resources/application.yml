@@ -27,7 +27,7 @@ spring:
   redis:
     host: ${REDIS_HOST:localhost}
     port: ${REDIS_PORT:6379}
-    timeout: 60000
+    timeout: 600000
   profiles:
     active: local
   application:
@@ -40,12 +40,12 @@ spring:
     driver-class-name: org.postgresql.Driver
     hikari:
       minimum-idle: 2
-      maximum-pool-size: 10
+      maximum-pool-size: 100
       pool-name: TcBackendApiPool
-      idle-timeout: 9000
+      idle-timeout: 90000
       #isolate-internal-queries: true
       connection-test-query: SELECT 1
-      connection-timeout: 18000
+      connection-timeout: 180000
   
   jpa:
     properties:
@@ -57,32 +57,32 @@ spring:
     open-in-view: false
 
 app:
-  cache.ttl: 40000
+  cache.ttl: 400000
   cache.user.token: true
-  mvc.async.request-timeout: 10000
+  mvc.async.request-timeout: 100000
   thread.async:
-    corePoolSize: 20
-    maxPoolSize: 300
-    queueCapacity: 600
+    corePoolSize: 200
+    maxPoolSize: 3000
+    queueCapacity: 6000
   auth.backoffice:
-    tokenExpiration: 85000
+    tokenExpiration: 850000
   rest.client.oauth:
     retry: 3
-    timeout: 5
+    timeout: 60
     endpoint: ${OAUTH_APP_HOST:http://localhost:8081}
     clientId: dGNfY2xpZW50OnRlY2hfY2hhbGxlbmdlX2FwcA==
     userName: ${AUTH_USER_ID:tc-auth-user-app}
     password: ${AUTH_USER_PASSWORD:12345678}
   rest.client.backoffice:
     retry: 3
-    timeout: 5
+    timeout: 60
     endpoint: ${BACKOFFICE_APP_HOST:http://localhost:8080}
   client:
     name: tc_client
     secret: $2a$12$aNBFov6o75DX51iVqd5mM.Z5S.Wi7xHMS3OzcU5386TWRi28Y691W
     signKey: tech-challenge
-    tokenExpirationTime: 86400
-    refreshTokenExpirationTime: 86400
+    tokenExpirationTime: 864000
+    refreshTokenExpirationTime: 864000
   jwt:
     secret: e0b41325-42e5-4b3a-b995-b05c4e77c56d
     expirationTimeInMillis: 3600000    
